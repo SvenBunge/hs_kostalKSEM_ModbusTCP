@@ -1,0 +1,288 @@
+<h1>Kostal KSEM ModbusTCP v0.1</h1>
+
+<p>Dieser Logikbaustein liest regelmäßig Werte aus dem Smart Energy Meter des Herstellers <em>Kostal</em>, auch KSEM genannt, ein.</p>
+
+<h2>Eingänge</h2>
+
+<table>
+<thead>
+<tr>
+  <th>Nummer</th>
+  <th>Datentyp</th>
+  <th>Default</th>
+  <th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>Zahl</td>
+  <td>0</td>
+  <td>Schaltet den Baustein aus oder an. Dies funktioniert zur Laufzeit oder auch statisch, in dem der Wert entsprechend im Logikeditor geändert wird. 0 = Aus, 1 = an</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Zahl</td>
+  <td>5 Sekunden</td>
+  <td>Ist die Frequenz, wie oft der Baustein den Wechselrichter abfragt. Kleinere Werte erhöhen die Last auf HS und WR.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>Text</td>
+  <td>127.0.0.1</td>
+  <td>Die IP-Adresse für den Wechselrichter. Hostname aktuell nicht implementiert.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Ausgänge</h2>
+
+<p>Alle Ausgänge sind SBC - Send by change - und werden daher nur gesendet, wenn auch eine Änderung eingetreten ist.
+DPT ist eine Empfehlung. </p>
+
+<table>
+<thead>
+<tr>
+  <th>Nummer</th>
+  <th>DPT</th>
+  <th>Modbus-Reg</th>
+  <th>Einheit</th>
+  <th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>9.xxx / Float</td>
+  <td>0-3</td>
+  <td>W</td>
+  <td>Aktueller Bezug/Einspeisung Wirkleistung, Einspeisung ist negativ - alle Phasen</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>9.xxx / Float</td>
+  <td>4-7</td>
+  <td>var</td>
+  <td>Aktueller Bezug/Einspeisung Blindleistung, Einspeisung ist negativ - alle Phasen</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>9.xxx / Float</td>
+  <td>16-19</td>
+  <td>VA</td>
+  <td>Aktueller Bezug/Einspeisung Scheinleistung, Einspeisung ist negativ - alle Phasen</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>9.xxx / Float</td>
+  <td>24-25</td>
+  <td>--</td>
+  <td>Leistungsfaktor - alle Phasen</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>9.xxx / Float</td>
+  <td>26-27</td>
+  <td>hz</td>
+  <td>Netzfrequenz</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>9.xxx / Float</td>
+  <td>40-43</td>
+  <td>W</td>
+  <td>Aktueller Bezug/Einspeisung Wirkleistung, Einspeisung ist negativ - L1</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td>9.xxx / Float</td>
+  <td>44-47</td>
+  <td>var</td>
+  <td>Aktueller Bezug/Einspeisung Blindleistung, Einspeisung ist negativ - L1</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td>9.xxx / Float</td>
+  <td>56-59</td>
+  <td>VA</td>
+  <td>Aktueller Bezug/Einspeisung Scheinleistung, Einspeisung ist negativ - L1</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td>9.xxx / Float</td>
+  <td>60-61</td>
+  <td>A</td>
+  <td>Stromstärke L1</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td>9.xxx / Float</td>
+  <td>62-63</td>
+  <td>V</td>
+  <td>Spannung L1</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td>9.xxx / Float</td>
+  <td>64-65</td>
+  <td>--</td>
+  <td>Leistungsfaktor L1</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td>9.xxx / Float</td>
+  <td>80-83</td>
+  <td>W</td>
+  <td>Aktueller Bezug/Einspeisung Wirkleistung, Einspeisung ist negativ - L2</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td>9.xxx / Float</td>
+  <td>84-87</td>
+  <td>var</td>
+  <td>Aktueller Bezug/Einspeisung Blindleistung, Einspeisung ist negativ - L2</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td>9.xxx / Float</td>
+  <td>96-99</td>
+  <td>VA</td>
+  <td>Aktueller Bezug/Einspeisung Scheinleistung, Einspeisung ist negativ - L2</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td>9.xxx / Float</td>
+  <td>100-101</td>
+  <td>A</td>
+  <td>Stromstärke L2</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td>9.xxx / Float</td>
+  <td>102-103</td>
+  <td>V</td>
+  <td>Spannung L2</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td>9.xxx / Float</td>
+  <td>104-105</td>
+  <td>--</td>
+  <td>Leistungsfaktor L2</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td>9.xxx / Float</td>
+  <td>120-123</td>
+  <td>W</td>
+  <td>Aktueller Bezug/Einspeisung Wirkleistung, Einspeisung ist negativ - L3</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td>9.xxx / Float</td>
+  <td>124-127</td>
+  <td>var</td>
+  <td>Aktueller Bezug/Einspeisung Blindleistung, Einspeisung ist negativ - L3</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td>9.xxx / Float</td>
+  <td>136-139</td>
+  <td>VA</td>
+  <td>Aktueller Bezug/Einspeisung Scheinleistung, Einspeisung ist negativ - L3</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td>9.xxx / Float</td>
+  <td>140-141</td>
+  <td>A</td>
+  <td>Stromstärke L3</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td>9.xxx / Float</td>
+  <td>142-143</td>
+  <td>V</td>
+  <td>Spannung L3</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td>9.xxx / Float</td>
+  <td>144-145</td>
+  <td>--</td>
+  <td>Leistungsfaktor L3</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td>14.xxx / Float</td>
+  <td>512-515</td>
+  <td>kWh</td>
+  <td>Zähler Wirkenergie aus dem Stromnetz</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td>14.xxx / Float</td>
+  <td>516-519</td>
+  <td>kWh</td>
+  <td>Zähler Wirkenergie in das Stromnetz</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td>14.xxx / Float</td>
+  <td>520-523</td>
+  <td>kvarh</td>
+  <td>Zähler Blindenergie aus dem Stromnetz</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td>14.xxx / Float</td>
+  <td>524-527</td>
+  <td>kvarh</td>
+  <td>Zähler Blindenergie in das Stromnetz</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td>14.xxx / Float</td>
+  <td>544-547</td>
+  <td>kVAh</td>
+  <td>Zähler Scheinenergie aus dem Stromnetz</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td>14.xxx / Float</td>
+  <td>548-551</td>
+  <td>kVAh</td>
+  <td>Zähler Scheinenergie in das Stromnetz</td>
+</tr>
+</tbody>
+</table>
+
+<h1>Debug-Mode</h1>
+
+<p>Der Logikbaustein zeigt im Debug-Mode vom HS den letzten Fehler an:</p>
+
+<ol>
+<li>Homeserver hslist aufrufen - https://<HS IP>&gt;/hslist</li>
+<li>Listenschlüssel: <code>debug</code>, Username und Passwort von einem admin-User eingeben.</li>
+<li>Unter <em>HSL2.0</em> oder <em>kostalKSEMModbusTCP14181</em> die Fehler suchen oder die Werte überprüfen.</li>
+</ol>
+
+<h1>Haftung / Gewährleistung</h1>
+
+<p>Es wird weder eine Haftung noch eine Gewährleistung übernommen. Für den Betrieb ist der Anlagenbetreiber bzw. Integrator verantwortlich.</p>
+
+<h1>Sourcecode / Weiterführende Doku</h1>
+
+<ul>
+<li>Der Sourcecode ist auf Github zu finden: <a rel="noopener" target="_blank" href="https://github.com/SvenBunge/hs_kostalInverterModbusTCP">hs_kostalInverterModbusTCP</a></li>
+<li>Der Baustein wird im KNX-Forum diskutiert: <a rel="noopener" target="_blank" href="https://knx-user-forum.de/forum/%C3%B6ffentlicher-bereich/knx-eib-forum/1559910-logikbaustein-kostal-wechselrichter-via-modbus-tcp-abfragen">Thread</a></li>
+</ul>
+
+<h1>Lizenz &amp; Faire Nutzung</h1>
+
+<ul>
+<li>Der Baustein wird unter der LGPL 2.1 frei zur Verfügung gestellt.</li>
+<li>Die Nutzung des Logikbausteins ist für Endverbraucher  frei, wenn sie diese selbst und selbstständig in Betrieb nehmen und konfigurieren. - Integratoren haben eine angemessene Aufwandsentschädigung für die Erstellung auf das Paypal-Konto pro Installation zu zahlen, welches im <a rel="noopener" target="_blank" href="https://knx-user-forum.de/forum/%C3%B6ffentlicher-bereich/knx-eib-forum/1559910-logikbaustein-kostal-wechselrichter-via-modbus-tcp-abfragen">KNX-Forum-Thread</a> im obersten Post hinterlegt ist.</li>
+<li>Freie Software heißt nicht freie Wartung &amp; Support und geschieht auf freiwilliger Basis</li>
+<li>Es wird keine Gewährleistung noch Haftung für Schäden aus der Nutzung des Bausteins übernommen</li>
+</ul>

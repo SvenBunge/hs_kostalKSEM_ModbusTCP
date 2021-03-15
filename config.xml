@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <module category="Energiemanagement" context="kostalKsemModbusTCP14181" id="14181" name="kostalKsemModbusTCP" internal_name="kostalKSEM_ModbusTCP" external_name="Kostal-KSEM ModbusTCP (14181)" version="0.1.0">
+            <inputs>
+                <input type="number" const_name="switch" init_value="0">Switch on (1) / off (0)</input>
+                <input type="number" const_name="fetch_interval" init_value="5">Seconds of the interval to read power values (default: 5 secs)</input>
+                <input type="string" const_name="ksem_ip" init_value="127.0.0.1">IP of KSEM</input>
+            </inputs>
+            <outputs>
+                <output type="number" const_name="active_power" init_value="0.0">Active power</output>
+                <output type="number" const_name="reactive_power" init_value="0.0">Reactive power</output>
+                <output type="number" const_name="apparent_power" init_value="0.0">Apparent power</output>
+                <output type="number" const_name="power_factor" init_value="0.0">Power Factor</output>
+                <output type="number" const_name="supply_frequency" init_value="0.0">Supply frequency</output>
+
+                <output type="number" const_name="active_power_L1" init_value="0.0">Active power L1 (W)</output>
+                <output type="number" const_name="reactive_power_L1" init_value="0.0">Reactive power L1 (var)</output>
+                <output type="number" const_name="apparent_power_L1" init_value="0.0">Apparent power L1 (VA)</output>
+                <output type="number" const_name="current_L1" init_value="0.0">Current L1 (A)</output>
+                <output type="number" const_name="voltage_L1" init_value="0.0">Voltage L1 (V)</output>
+                <output type="number" const_name="power_factor_L1" init_value="0.0">Power Factor L1</output>
+
+                <output type="number" const_name="active_power_L2" init_value="0.0">Active power L2 (W)</output>
+                <output type="number" const_name="reactive_power_L2" init_value="0.0">Reactive power L2 (var)</output>
+                <output type="number" const_name="apparent_power_L2" init_value="0.0">Apparent power L2 (VA)</output>
+                <output type="number" const_name="current_L2" init_value="0.0">Current L2 (A)</output>
+                <output type="number" const_name="voltage_L2" init_value="0.0">Voltage L2 (V)</output>
+                <output type="number" const_name="power_factor_L2" init_value="0.0">Power Factor L2</output>
+
+                <output type="number" const_name="active_power_L3" init_value="0.0">Active power L3 (W)</output>
+                <output type="number" const_name="reactive_power_L3" init_value="0.0">Reactive power L3 (var)</output>
+                <output type="number" const_name="apparent_power_L3" init_value="0.0">Apparent power L3 (VA)</output>
+                <output type="number" const_name="current_L3" init_value="0.0">Current L3 (A)</output>
+                <output type="number" const_name="voltage_L3" init_value="0.0">Voltage L3 (V)</output>
+                <output type="number" const_name="power_factor_L3" init_value="0.0">Power Factor L3</output>
+
+                <output type="number" const_name="counter_active_power_plus" init_value="0.0">Counter Active power from grid (kWh)</output>
+                <output type="number" const_name="counter_active_power_minus" init_value="0.0">Counter Active power feed-in (kWh)</output>
+                <output type="number" const_name="counter_reactive_power_plus" init_value="0.0">Counter Reactive power from grid (kvarh)</output>
+                <output type="number" const_name="counter_reactive_power_minus" init_value="0.0">Counter Reactive power feed-in (kvarh)</output>
+                <output type="number" const_name="counter_apparent_power_plus" init_value="0.0">Counter Apparent power from grid (kVAh)</output>
+                <output type="number" const_name="counter_apparent_power_minus" init_value="0.0">Counter Apparent power feed-in (kVAh)</output>
+            </outputs>
+            <remanent_variables>
+            </remanent_variables>
+            <imports>
+                <import>hsl20_3_timer</import>
+                <import>lib/pymodbus</import>
+            </imports>
+        </module>
+    </modules>
+    <logging type="None" ip="" port="" />
+</config>
