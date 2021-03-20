@@ -19,7 +19,7 @@ The latest version of the module is also available in the [KNX-User Forum Downlo
 
 ## Documentation
 
-This module fetches power information and states from home solar power inverters of the manufacturer "Kostal". It has been tested with the *Kostal Plenticore Plus 10* with 2 strings and an BYD battery attached. 
+This module fetches power / grid information of the Kostal Smart Energy Meter (KSEM). Has been tested with KSEM Firmware 1.3.0.
 
 More [detailed documentation](doc/log14181.md)
 
