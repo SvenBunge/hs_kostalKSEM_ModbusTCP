@@ -1,9 +1,10 @@
-# Kostal KSEM ModbusTCP (14181)
-Gira Homeserver 4 Logikmodule to poll power values from Kostal Smart Energy Meter (KSEM) via Modbus TCP.
+# Kostal KSEM G1 / G2 ModbusTCP (14181)
+
+Gira Homeserver 4 Logic module to poll power values from Kostal Smart Energy Meter (KSEM) G1 / G2 via Modbus TCP.
 
 ## Developer Notes
 
-Developed for the GIRA HomeServer 4.10 / 4.11!
+Developed for the GIRA HomeServer 4.12. Could work with prior versions.
 Licensed under the LGPL to keep all copies & forks free!
 
 :exclamation: **If you fork this project and distribute the module by your own CHANGE the Logikbaustein-ID because 14181 is only for this one and registered to @SvenBunge !!** :exclamation:
@@ -19,7 +20,7 @@ The latest version of the module is also available in the [KNX-User Forum Downlo
 
 ## Documentation
 
-This module fetches power / grid information of the Kostal Smart Energy Meter (KSEM). Has been tested with KSEM Firmware 1.3.0.
+This module fetches power / grid information of the Kostal Smart Energy Meter (KSEM).
 
 More [detailed documentation](doc/log14181.md)
 
